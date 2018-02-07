@@ -1,4 +1,8 @@
-app.controller('HomeController', ['$scope', function($scope){
-
-      
+app.service('HomeService', ['$http', '$q', function ($http, $q) {
+   
 }]);
+app.controller('HomeController', ['$scope', 'HomeService', function ($scope, HomeService) {
+
+}]);
+
+

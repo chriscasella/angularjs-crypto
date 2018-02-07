@@ -1,0 +1,15 @@
+<div class="row align-middle">
+    <span >
+    <md-input-container class="md-block" >
+        <label>Search By Currency</label>
+        <input ng-model="coin.name">
+    </md-input-container>
+    </span>
+</div>
+<div class="row" >
+    <ul ng-repeat="currency in currencies | orderBy: currency.asset_id_quote | filter: coin.name">
+        <md-button>
+            {{currency.asset_id_quote}}
+        </md-button>
+    </ul>
+</div>
