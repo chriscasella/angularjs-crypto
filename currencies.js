@@ -1,6 +1,8 @@
 app.service('CurrenciesSerivce', ['$http', '$q', function($http, $q){
     var self = this;
     self.currencies = null;
+
+    //gets all currencies
     self.getApi = function () {
         var deferred = $q.defer();
         if (self.currencies == null) {
@@ -24,6 +26,7 @@ app.service('CurrenciesSerivce', ['$http', '$q', function($http, $q){
 app.controller('CurrenciesController', ['$scope', 'CurrenciesSerivce', function ($scope, CurrenciesSerivce){
     $scope.currencies = null;
     
+    //calls service
     $scope.init = function () {
         $scope.getApi();
     };
@@ -34,6 +37,6 @@ app.controller('CurrenciesController', ['$scope', 'CurrenciesSerivce', function 
         });
     };
 
-
+    //TODO Make a displayCurrency function that routes to a view for an individual currency and makes another API call for that currency.
     $scope.init();
 }]);
