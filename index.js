@@ -8,5 +8,9 @@ app.config(['$locationProvider', '$routeProvider', function ($locationProvider, 
         templateUrl: 'home.html',
         controller: 'HomeController'
     })
-    .otherwise({ redirectTo: '/view1' });
+    .when('/currencies',{
+        templateUrl: 'currencies.html',
+        controller: 'CurrenciesController'
+    })
+    .otherwise({ redirectTo: '/' });
 }]);
