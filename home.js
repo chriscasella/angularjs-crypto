@@ -1,4 +1,5 @@
-app.controller('HomeController', ['$scope', function($scope){
+app.controller('HomeController', ['$scope', 'ROUTES', function($scope, ROUTES){
 
+    $scope.routes = ROUTES;
       
-}]);
+}]); 

@@ -1,1 +1,6 @@
-<md-button>Home</md-button>
+<div ng-repeat="route in routes">
+    <md-button class="md-primary md-raised">
+        <md-icon class="route.icon"></md-icon>
+        {{ route.name}}
+    </md-button>
+</div>
