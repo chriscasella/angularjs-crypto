@@ -1,8 +1,12 @@
-<div ng-repeat="route in routes">
-    <md-button class="md-primary md-raised"
-        ng-click="getApi();"
-    >
-        <md-icon class="route.icon"></md-icon>
-        {{ route.name}}
-    </md-button>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light clearfix" role="navigation">
+    <span class="align-middle"></span>
+        <ul ng-repeat="route in routes">
+            <md-button class="col-xl navbar-toggler md-primary md-raised"
+                ng-click="getApi();"
+            >
+                <md-icon class={{route.icon}}></md-icon>
+                {{ route.name}}
+            </md-button>
+        </ul>
+    </span>
+</nav>

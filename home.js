@@ -1,7 +1,7 @@
 app.service('HomeService', ['$http', '$q', function ($http, $q) {
     var self = this;
     self.currencies = null;
-    self.getApi = function () {
+    /*self.getApi = function () {
         var deferred = $q.defer();
         if(self.currencies == null){
             $http({
@@ -18,14 +18,14 @@ app.service('HomeService', ['$http', '$q', function ($http, $q) {
             deferred.resolve(self.currencies);
         };
         return deferred.promise;
-    };
+    };*/
 }]);
 app.controller('HomeController', ['$scope', 'HomeService', 'ROUTES', function ($scope, HomeService, ROUTES) {
 
     $scope.routes = ROUTES;
 
     $scope.init = function () {
-        $scope.getApi();
+        //$scope.getApi();
     };
     
     $scope.getApi = function () {
