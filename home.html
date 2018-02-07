@@ -1,5 +1,7 @@
 <div ng-repeat="route in routes">
-    <md-button class="md-primary md-raised">
+    <md-button class="md-primary md-raised"
+        ng-click="getApi();"
+    >
         <md-icon class="route.icon"></md-icon>
         {{ route.name}}
     </md-button>
