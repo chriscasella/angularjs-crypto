@@ -1,7 +1,11 @@
 <div ="row">
     <div class="jumbotron jumbotron-fluid">
         <h1> Exchange Rates for {{ coin.asset_id_base }} </h1>
-        <h2 ng-if="specificExchngRate"> {{specificExchngRate}} </h2>
+        
+        <h2> {{specificExchngRate}} 
+            <md-progress-circular ng-disabled="coin" class="md-hue-2" md-diameter="50px">
+            </md-progress-circular>
+        </h2>
     </div>
     <div class="row">
         <md-button

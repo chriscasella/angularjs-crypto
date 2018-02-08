@@ -32,12 +32,17 @@ app.service('CoinService', ['$http', '$q', function($http, $q){
 }])
 
 app.controller('CoinController', ['$scope', '$routeParams', 'CoinService', function ($scope, $routeParams, CoinService){
+    //TODO Circular loading module from Material
     $scope.init = function(){
         console.log($routeParams);
         $scope.getCoin($routeParams.coin);
     };
 
     $scope.toggledFn = null;
+
+    $scope.toggleFn = function(fn){
+        $scope.toggledFn = fn;
+    };
 
     $scope.getCoin = function(quote){
         CoinService.getCoin($routeParams.coin, quote).then(function (r) {
