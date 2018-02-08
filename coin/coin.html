@@ -1,8 +1,23 @@
 <div ="row">
     <div class="jumbotron jumbotron-fluid">
         <h1> Exchange Rates for {{ coin.asset_id_base }} </h1>
+        <h2 ng-if="specificExchngRate"> {{specificExchngRate}} </h2>
     </div>
-        <md-button  ng-repeat="rate in coin.rates" class="md-flat md-accent hue-1">
-            {{rate.asset_id_quote}}
+    <div class="row">
+        <md-button
+            class="md-primary md-raised"
+            ng-click=""
+        >
+        Find Specific Exchange
+        </md-button>
+
+        </md-button>
+    </div>
+        <md-button  
+            ng-repeat="rate in coin.rates" 
+            class="md-flat md-accent hue-1"
+            ng-click="toggledFn(rate.asset_id_quote);"
+        >
+        {{rate.asset_id_quote}}
         </md-button>
 </div>

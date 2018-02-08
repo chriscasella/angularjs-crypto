@@ -15,6 +15,20 @@ app.service('CoinService', ['$http', '$q', function($http, $q){
         });
         return deferred.promise;
     };
+
+    self.getSpecificExchng = function(base, quote){
+        var deferred = $q.defer();
+        $http({
+            method: 'GET',
+            url: 'https://rest.coinapi.io/v1/exchangerate/' + base + '/' + quote + '?apikey=' + api_key
+        }).then(function(response){
+            console.log(response);
+            deferred.resolve(response.data);
+        }, function(error){
+            deferred.reject(error);
+        })
+        return deferred.promise;
+    };
 }])
 
 app.controller('CoinController', ['$scope', '$routeParams', 'CoinService', function ($scope, $routeParams, CoinService){
@@ -22,10 +36,19 @@ app.controller('CoinController', ['$scope', '$routeParams', 'CoinService', funct
         console.log($routeParams);
         $scope.getCoin($routeParams.coin);
     };
-    $scope.getCoin = function(coin){
-        CoinService.getCoin(coin).then(function (r) {
+
+    $scope.toggledFn = null;
+
+    $scope.getCoin = function(quote){
+        CoinService.getCoin($routeParams.coin, quote).then(function (r) {
             $scope.coin = r;
         });
+    };
+
+    $scope.getSpecificExchng = function(exchng){
+        CoinService.getSpecificExchng(exchng).then(function(r){
+            $scope.specificExchngRate = r;
+        })
     };
 
     $scope.init();
