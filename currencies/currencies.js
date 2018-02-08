@@ -23,7 +23,7 @@ app.service('CurrenciesSerivce', ['$http', '$q', function($http, $q){
     };
 }])
 
-app.controller('CurrenciesController', ['$scope', 'CurrenciesSerivce', function ($scope, CurrenciesSerivce){
+app.controller('CurrenciesController', ['$scope', '$location', 'CurrenciesSerivce', function ($scope, $location, CurrenciesSerivce){
     $scope.currencies = null;
     
     //calls service
@@ -35,6 +35,10 @@ app.controller('CurrenciesController', ['$scope', 'CurrenciesSerivce', function 
         CurrenciesSerivce.getApi().then(function (r) {
             $scope.currencies = r;
         });
+    };
+
+    $scope.goToCoin= function (route){
+        $location.path(route);
     };
 
     //TODO Make a displayCurrency function that routes to a view for an individual currency and makes another API call for that currency.
