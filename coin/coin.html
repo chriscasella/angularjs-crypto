@@ -1,1 +1,8 @@
-<h1> Hello Coin </h1>
+<div ="row">
+    <div class="jumbotron jumbotron-fluid">
+        <h1> Exchange Rates for {{ coin.asset_id_base }} </h1>
+    </div>
+        <md-button  ng-repeat="rate in coin.rates" class="md-flat md-accent hue-1">
+            {{rate.asset_id_quote}}
+        </md-button>
+</div>

@@ -1,23 +1,29 @@
 app.service('CurrenciesSerivce', ['$http', '$q', function($http, $q){
     var self = this;
-    self.currencies = null;
+    self.currencies = [];
 
     //gets all currencies
     self.getApi = function () {
         var deferred = $q.defer();
-        if (self.currencies == null) {
+        console.log(self.currencies.length);
+        if (self.currencies.length == 0) {
             $http({
                 method: 'GET',
-                url: 'https://rest.coinapi.io/v1/exchangerate/BTC?apikey=' + api_key
+                url: 'https://rest.coinapi.io/v1/assets'
             }).then(function (response) {
-                deferred.resolve(response.data.rates);
-                console.log('My first promise succeeded', response.data.rates);
+                for(var i = 0; i < response.data.length; i++){
+                    if(response.data[i].type_is_crypto == 1){
+                        self.currencies.push(response.data[i])
+                    };
+                };
+                deferred.resolve(self.currencies);
+                console.log('My first promise succeeded', response.data);
             }, function (error) {
                 deferred.reject(error);
                 console.log('My first promise failed', error);
             });
         } else {
-            deferred.resolve();
+            deferred.resolve(self.currencies);
         };
         return deferred.promise;
     };
@@ -26,6 +32,8 @@ app.service('CurrenciesSerivce', ['$http', '$q', function($http, $q){
 app.controller('CurrenciesController', ['$scope', '$location', 'CurrenciesSerivce', function ($scope, $location, CurrenciesSerivce){
     $scope.currencies = null;
     
+    //TODO md-progress for loading progress circular
+
     //calls service
     $scope.init = function () {
         $scope.getApi();
@@ -38,7 +46,8 @@ app.controller('CurrenciesController', ['$scope', '$location', 'CurrenciesSerivc
     };
 
     $scope.goToCoin= function (route){
-        $location.path(route);
+        //console.log('/currencies', route, $location.path(route))
+        $location.path('currencies/' + route);
     };
 
     //TODO Make a displayCurrency function that routes to a view for an individual currency and makes another API call for that currency.

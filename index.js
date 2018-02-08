@@ -14,10 +14,7 @@ app.config(['$locationProvider', '$routeProvider', function ($locationProvider, 
     })
     .when('/currencies/:coin',{
         templateUrl: 'coin/coin.html',
-        controller: 'CoinController',
-        data:{
-            data : 'coin'
-        }
+        controller: 'CoinController'
     })
     .otherwise({ redirectTo: '/' });
 }]);
