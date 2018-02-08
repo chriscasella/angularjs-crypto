@@ -5,12 +5,19 @@ app.config(['$locationProvider', '$routeProvider', function ($locationProvider, 
 
     $routeProvider
     .when('/',{
-        templateUrl: 'home.html',
+        templateUrl: 'home/home.html',
         controller: 'HomeController'
     })
     .when('/currencies',{
-        templateUrl: 'currencies.html',
+        templateUrl: 'currencies/currencies.html',
         controller: 'CurrenciesController'
+    })
+    .when('/currencies/:coin',{
+        templateUrl: 'coin/coin.html',
+        controller: 'CoinController',
+        data:{
+            data : 'coin'
+        }
     })
     .otherwise({ redirectTo: '/' });
 }]);
