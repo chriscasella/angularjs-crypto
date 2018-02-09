@@ -1,16 +1,21 @@
-<div class="row align-middle">
-    <span >
-    <md-input-container class="md-block" >
-        <label>Search By Currency</label>
-        <input ng-model="coin.name">
-    </md-input-container>
+<div class="row">
+    <h1 class="col">Overview</h1>
+    <md-switch class="col" ng-model="switchVal" ng-change="toggleCoinView(switchVal);"></md-switch>
+    <h1 class="row">Exchange Rates</h1>
+</div>
+<md-progress-circular
+    md-mode="indeterminate"
+    ng-if="currencies == null"
+    md-diameter="100px"
+>
+</md-progress-circular>
+<div class="row align-middle" ng-if="currencies != null">
+    <span>
+        <md-input-container class="md-block">
+            <label>Search By Currency</label>
+            <input ng-model="coin.name">
+        </md-input-container>
     </span>
 </div>
-<div class="row" >
-        <md-button
-            ng-repeat="currency in currencies | orderBy: currency.Name | filter: coin.name"
-            class="col md-flat md-primary hue-2" 
-            ng-click="goToCoin(currency.Symbol);">
-            {{currency.Name}}
-        </md-button>
+<div ng-include="activeView" class="row align-middle">
 </div>

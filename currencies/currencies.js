@@ -32,12 +32,22 @@ app.service('CurrenciesSerivce', ['$http', '$q', function($http, $q){
 
 app.controller('CurrenciesController', ['$scope', '$location', 'CurrenciesSerivce', function ($scope, $location, CurrenciesSerivce){
     $scope.currencies = null;
-    
+    $scope.activeView = 'currencies/currenciesCoin.html';
+    $scope.switchVal = false;
     //TODO md-progress for loading progress circular
-
+    
     //calls service
     $scope.init = function () {
         $scope.getApi();
+    };
+
+    $scope.toggleCoinView = function (s){
+        if( s === true ){
+            $scope.activeView = 'currencies/currenciesCoinOverview.html';
+        }
+        else{
+            $scope.activeView = 'currencies/currenciesCoin.html';
+        };
     };
 
     $scope.getApi = function () {
