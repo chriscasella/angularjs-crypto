@@ -4,7 +4,18 @@
             <md-progress-circular ng-disabled="coin" class="md-hue-2" md-diameter="50px">
             </md-progress-circular>
     </div>
-    <div>
-        {{coin.BTC}}
+    <div class="row align-middle">
+        <div class="col">
+            <h1>BTC</h1>
+            {{coin.BTC}}
+        </div>
+        <div class="col">
+            <h1>USD</h1>
+            {{coin.USD}}
+        </div>
+        <div class="col">
+        <h1>EUR</h1>
+        {{coin.EUR}}
+        </div>
     </div>
 </div>
