@@ -1,0 +1,11 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
+            <md-button 
+            ng-repeat="route in routes"
+            class="col md-primary md-raised"
+            ng-click="goTo(route.route);"
+            >
+                <md-icon class={{route.icon}}></md-icon>
+                {{ route.name}}
+            </md-button>
+    </span>
+</nav>

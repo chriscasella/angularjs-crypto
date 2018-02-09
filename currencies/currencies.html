@@ -7,9 +7,10 @@
     </span>
 </div>
 <div class="row" >
-    <ul ng-repeat="currency in currencies | orderBy: currency.asset_id_quote | filter: coin.name">
-        <md-button>
-            {{currency.asset_id_quote}}
+        <md-button
+            ng-repeat="currency in currencies | orderBy: currency.Name | filter: coin.name"
+            class="col md-flat md-primary hue-2" 
+            ng-click="goToCoin(currency.Symbol);">
+            {{currency.Name}}
         </md-button>
-    </ul>
 </div>
