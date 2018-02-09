@@ -5,19 +5,20 @@ app.service('CurrenciesSerivce', ['$http', '$q', function($http, $q){
     //gets all currencies
     self.getApi = function () {
         var deferred = $q.defer();
-        console.log(self.currencies.length);
+        //console.log(self.currencies.length);
         if (self.currencies.length == 0) {
             $http({
                 method: 'GET',
-                url: 'https://rest.coinapi.io/v1/assets'
+                url: 'https://min-api.cryptocompare.com/data/all/coinlist'
             }).then(function (response) {
-                for(var i = 0; i < response.data.length; i++){
-                    if(response.data[i].type_is_crypto == 1){
-                        self.currencies.push(response.data[i])
-                    };
-                };
+                var r = response.data.Data;
+                Object.keys(r).forEach(function (key) {
+                    var value = r[key]
+                    // iteration code
+                    self.currencies.push(value);
+                })
                 deferred.resolve(self.currencies);
-                console.log('My first promise succeeded', response.data);
+                console.log('My first promise succeeded', self.currencies);
             }, function (error) {
                 deferred.reject(error);
                 console.log('My first promise failed', error);
