@@ -1,7 +1,14 @@
 <md-card
     class="md-padding" layout="row"
 >
-    <md-card-title>
+    <md-card-title ng-if="currencies == null">
         <span class="md-headline">Welcome to the Currency Tracker</span>
+        <md-progress-circular ng-disabled="currencies != null" md-diameter="96"></md-progress-circular>
     </md-card-title>
+    <span>
+        <md-input-container class="md-block">
+            <label>Search By Currency</label>
+            <input ng-model="coin.name">
+        </md-input-container>
+    </span>
 </md-card>
