@@ -1,0 +1,7 @@
+
+<div class="row">
+    <md-button ng-repeat="currency in currencies | orderBy: currency.Name | filter: coin.name" class="col md-flat md-accent hue-2"
+        ng-click="goToCoin(currency.Symbol);">
+        {{currency.Name}}
+    </md-button>
+</div>

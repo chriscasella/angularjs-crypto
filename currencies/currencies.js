@@ -1,4 +1,4 @@
-app.service('CurrenciesSerivce', ['$http', '$q', function($http, $q){
+app.service('CurrenciesService', ['$http', '$q', function($http, $q){
     var self = this;
     self.currencies = [];
 
@@ -30,18 +30,28 @@ app.service('CurrenciesSerivce', ['$http', '$q', function($http, $q){
     };
 }])
 
-app.controller('CurrenciesController', ['$scope', '$location', 'CurrenciesSerivce', function ($scope, $location, CurrenciesSerivce){
+app.controller('CurrenciesController', ['$scope', '$location', 'CurrenciesService', function ($scope, $location, CurrenciesService){
     $scope.currencies = null;
-    
+    $scope.activeView = 'currencies/currenciesCoin.html';
+    $scope.switchVal = false;
     //TODO md-progress for loading progress circular
-
+    
     //calls service
     $scope.init = function () {
         $scope.getApi();
     };
 
+    $scope.toggleCoinView = function (s){
+        if( s === true ){
+            $scope.activeView = 'currencies/currenciesCoinOverview.html';
+        }
+        else{
+            $scope.activeView = 'currencies/currenciesCoin.html';
+        };
+    };
+
     $scope.getApi = function () {
-        CurrenciesSerivce.getApi().then(function (r) {
+        CurrenciesService.getApi().then(function (r) {
             $scope.currencies = r;
         });
     };
