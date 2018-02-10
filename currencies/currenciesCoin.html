@@ -1,6 +1,15 @@
 <div class="row">
-    <md-button ng-repeat="currency in currencies | orderBy: currency.Name | filter: coin.name" class="col md-flat md-primary hue-2"
+    <md-button ng-repeat="currency in visibleCurrencies | orderBy: currency.Name | filter: coin.name"
+        class="col md-flat md-primary hue-2"
         ng-click="goToCoin(currency.Symbol);">
         {{currency.Name}}
     </md-button>
 </div>
+
+<ul ng-show="currencies.length > 0" ng-repeat="item in currencies" ng-click="changePage($index)" class="pagination">
+    <li class="page-item">
+        <a class="page-link">
+            {{$index}}
+        </a>
+    </li>
+</ul>

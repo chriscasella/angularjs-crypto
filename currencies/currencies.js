@@ -31,17 +31,31 @@ app.service('CurrenciesService', ['$http', '$q', function($http, $q){
 }])
 
 app.controller('CurrenciesController', ['$scope', '$location', 'CurrenciesService', function ($scope, $location, CurrenciesService){
-    $scope.currencies = null;
+    $scope.currencies = [];
+    $scope.currencyToPush = [];
     $scope.activeView = 'currencies/currenciesCoin.html';
     $scope.switchVal = false;
-    //TODO md-progress for loading progress circular
+    $scope.visibleCurrencies = [];
+    $scope.currenciesLen = $scope.currencies.length;
     
     //calls service
     $scope.init = function () {
         $scope.getApi();
     };
-
+    //Changes pagination position
+    $scope.changePage = function(pageNum){
+        this.pageNum = pageNum - 1;
+        var c = $scope.currencies;
+        console.log(pageNum);
+        for(var i = 0; i < c.length; i++){
+          if(pageNum == i){
+              $scope.visibleCurrencies = angular.copy(c[i]);
+          };  
+        };
+    };
+    //toggles active views in currencies.html
     $scope.toggleCoinView = function (s){
+        // s is the boolean response coming from the md-switch directive
         if( s === true ){
             $scope.activeView = 'currencies/currenciesCoinOverview.html';
         }
@@ -52,7 +66,20 @@ app.controller('CurrenciesController', ['$scope', '$location', 'CurrenciesServic
 
     $scope.getApi = function () {
         CurrenciesService.getApi().then(function (r) {
-            $scope.currencies = r;
+            //$scope.currencies = r;
+            var counter = 0;
+            for(var i = 0; i < r.length; i++){
+                if(counter < 149){
+                    $scope.currencyToPush.push(r[i]);
+                    counter++
+                } else {
+                    counter =0;
+                    $scope.currencies.push($scope.currencyToPush);
+                    $scope.currencyToPush = [];
+                    $scope.currencyToPush.push(r[i]);
+                };
+            };
+            $scope.changePage(1);
         });
     };
 
