@@ -1,8 +1,9 @@
 app.service('HomeService', ['$http', '$q', function ($http, $q) {
    
 }]);
-app.controller('HomeController', ['$scope', 'HomeService', 'CurrenciesService', function ($scope, HomeService, CurrenciesService) {
+app.controller('HomeController', ['$scope', '$q', '$timeout', 'HomeService', 'CurrenciesService', function ($scope, $q, $timeout, HomeService, CurrenciesService) {
     $scope.currencies = null;
+    $scope.coinName = '';
     
     $scope.init = function (){
         $scope.getCurrencies();
@@ -14,6 +15,7 @@ app.controller('HomeController', ['$scope', 'HomeService', 'CurrenciesService', 
         });
     };
 
+  
     $scope.init();
 }]);
 
