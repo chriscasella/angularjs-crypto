@@ -1,3 +1,4 @@
+//Service
 app.service('CurrenciesService', ['$http', '$q', function($http, $q){
     var self = this;
     self.currencies = [];
@@ -29,7 +30,7 @@ app.service('CurrenciesService', ['$http', '$q', function($http, $q){
         return deferred.promise;
     };
 }])
-
+//Controller
 app.controller('CurrenciesController', ['$scope', '$location', 'CurrenciesService', function ($scope, $location, CurrenciesService){
     $scope.currencies = [];
     $scope.currencyToPush = [];
@@ -84,8 +85,12 @@ app.controller('CurrenciesController', ['$scope', '$location', 'CurrenciesServic
     };
 
     $scope.goToCoin= function (route){
-        //console.log('/currencies', route, $location.path(route))
-        $location.path('currencies/' + route);
+        if ($scope.activeView == 'currencies/currenciesCoin.html'){
+            //routes to exchanges
+            $location.path('currencies/' + route);
+        }else{
+            $location.path('currencies/overView/' + route);
+        };
     };
 
     //TODO Make a displayCurrency function that routes to a view for an individual currency and makes another API call for that currency.

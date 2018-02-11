@@ -12,11 +12,11 @@ app.config(['$locationProvider', '$routeProvider', function ($locationProvider, 
         templateUrl: 'currencies/currencies.html',
         controller: 'CurrenciesController'
     })
-    .when('/currencies/:coin',{
-        templateUrl: 'coin/coin.html',
-        controller: 'CoinController'
+    .when('/currencies/:coin?',{
+        templateUrl: 'currenciesExchange/currenciesExchange.html',
+        controller: 'CurrenciesController'
     })
-    .when('/currencies/:coinOverview', {
+    .when('/currencies/overView/:coin', {
         templateUrl: 'coinOverview/coinOverview.html',
         controller: 'CoinOverviewController'
     })

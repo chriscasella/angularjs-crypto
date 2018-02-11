@@ -1,4 +1,4 @@
-app.service('CoinService', ['$http', '$q', function($http, $q){
+app.service('CurrenciesExchange', ['$http', '$q', function($http, $q){
     var self = this;
     var servCoin = null;
     self.getCoin = function(coin){
@@ -18,7 +18,7 @@ app.service('CoinService', ['$http', '$q', function($http, $q){
 
    }])
 
-app.controller('CoinController', ['$scope', '$routeParams', 'CoinService', function ($scope, $routeParams, CoinService){
+app.controller('CoinController', ['$scope', '$routeParams', 'CurrenciesExchange', function ($scope, $routeParams, CurrenciesExchange){
     //TODO Circular loading module from Material
 
     $scope.coinName = $routeParams.coin;
@@ -35,7 +35,7 @@ app.controller('CoinController', ['$scope', '$routeParams', 'CoinService', funct
     };
 
     $scope.getCoin = function(quote){
-        CoinService.getCoin($routeParams.coin).then(function (r) {
+        CurrenciesExchange.getCoin($routeParams.coin).then(function (r) {
             $scope.coin = r;
         });
     };
