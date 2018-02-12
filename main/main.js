@@ -11,5 +11,7 @@ app.controller('MainController', ['$scope', 'CurrenciesService', function ($scop
         })
     };
 
+    
+
     $scope.init();
 }]);
